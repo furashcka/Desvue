@@ -1,6 +1,6 @@
-# PSD Peek
+# Desvue
 
-**[Try it now →](https://furashcka.github.io/psd-peek/)**
+**[Try it now →](https://furashcka.github.io/Desvue/)**
 
 Open-source browser-based PSD file inspector — a free alternative to Avocode, Figma Dev Mode, and Figpea for working with Photoshop files. Inspect layers, measure distances, and explore your designs directly in your browser. No uploads, no servers, completely private and open source.
 
