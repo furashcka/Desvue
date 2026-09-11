@@ -2,73 +2,53 @@
 
 **[Try it now →](https://furashcka.github.io/Desvue/)**
 
-Open-source browser-based PSD file inspector — a free alternative to Avocode, Figma Dev Mode, and Figpea for working with Photoshop files. Inspect layers, measure distances, and explore your designs directly in your browser. No uploads, no servers, completely private and open source.
+![Desvue screenshot](https://raw.githubusercontent.com/furashcka/Desvue/main/public/Scrrenshot.jpg)
+
+Browser-based PSD and PSB inspector for frontend developers. Files are parsed,
+rendered, and inspected locally without uploads.
 
 ## Features
 
-- 🎨 Load PSD files via drag & drop or file selection
-- 🖼️ Canvas preview with zoom and pan controls
-- 📁 Layer tree with hierarchy and groups
-- 👁️ Show/hide layers with visibility toggle (with dynamic re-rendering)
-- 🎯 Click layers on canvas to select them (including vector layers)
-- 📏 Measure distances between layers
-- 📋 View layer properties (size, position, opacity, blend mode, effects)
-- 💅 Generate CSS code for layers (like CSS Hat or Avocode)
-  - Complete CSS properties: size, colors, fonts, shadows, borders, etc.
-  - HEX color format for all colors
-  - Absolute positioning separated at the end for easy copying
-  - Select text to copy specific properties
-  - One-click copy buttons for CSS and text content
-- 📤 Export layers to PNG, JPG, SVG
-  - Multiple export scales (1x, 2x, 3x, 4x)
-  - High-quality SVG rendering for vector Smart Objects
-  - Preview with checkerboard background
-  - SVG export for vector shape layers
-  - Smart Objects: embedded SVG files exported directly, AI/PDF exported as raw files
-- ⌨️ Keyboard shortcuts (S - select, H - hand tool, L - toggle layers panel, Space - pan)
-- 🔒 100% client-side, your files never leave your browser
-- 🆓 Completely free and open source
+- PSD and PSB support with drag-and-drop.
+- WebAssembly rendering with support for about 95% of Photoshop layer effects.
+- Layer tree with groups, visibility controls, clipping, and blend mode markers.
+- Layer selection directly on the canvas.
+- Generated CSS with syntax highlighting, conversion warnings, and copy support.
+- Text content inspection and copying.
+- Document-level color palette and font summary.
+- Layer spacing and resizable area measurements.
+- Eyedropper with a pixel loupe and HEX/RGBA copying.
+- Layer export to PNG, JPG, WebP, and SVG.
+- Document export to PNG, JPG, and WebP.
+- Raster export scales and custom filenames.
 
-## Known Limitations
+## Known limitations
 
-⚠️ **Layer Effects Not Rendered**: The application currently uses Photoshop's pre-rendered composite image by default, which includes all effects (gradients, shadows, etc.). However, this means:
-- Layer visibility toggling is disabled in composite mode (toggle 🔧 icon to enable dynamic rendering without effects)
-- Dynamic rendering mode (🔧) does not render layer effects like Gradient Overlay, Drop Shadow, etc.
-- Effects metadata is available for CSS generation, but visual rendering requires manual implementation
+- A small number of uncommon or complex Photoshop effects may render
+  differently from Photoshop.
+- SVG export may contain a raster image even when the source layer is fully
+  vector.
+- Raster exports at `@2x`, `@3x`, and `@4x` are not always scaled cleanly.
 
-**Why?** ag-psd provides layer effect metadata but doesn't render them. Implementing effect rendering (gradients, shadows, bevels, etc.) is a complex task that requires recreating Photoshop's rendering engine.
+## Roadmap
 
-**Workaround**: Use the 🎨/🔧 toggle button to switch between:
-- 🎨 Photoshop composite (with effects, no layer control)
-- 🔧 Dynamic rendering (layer control, no effects)
+- [ ] Figma file support.
+- [ ] Sketch file support.
+- [ ] Canvas rulers and draggable guides for building layout grids.
+- [ ] Preserve vector data throughout SVG export instead of falling back to a
+  raster image.
+- [ ] Improve raster resampling for `@2x`, `@3x`, and `@4x` exports.
+- [ ] Cover the remaining unsupported Photoshop effects.
 
-## Technologies
+## Keyboard shortcuts
 
-- Vue 3 + TypeScript
-- ag-psd - PSD file parsing with extended compositor for dynamic rendering
-- Vite
+`V` select · `H` hand · `Space` temporary hand · `I` eyedropper · `M` measure ·
+`L` layers panel · `+`/`-` zoom · `0` fit · `Esc` clear
 
-## Architecture
+## Stack
 
-- **ag-psd** - Parses PSD files and provides layer metadata
-- **Custom Compositor** (`src/utils/psdCompositor.ts`) - Dynamic layer compositing with:
-  - Layer visibility toggling
-  - Blend mode support (via Canvas API)
-  - Performance optimizations (caching, viewport culling)
-  - Group rendering with proper opacity/blend modes
+Vue 3, Web Workers, Tailwind CSS 4, Prism.js, Font Awesome, Vite.
 
-## Installation and Running
+## License
 
-```bash
-npm install
-npm run dev
-```
-
-## Usage
-
-1. Open the application in your browser
-2. Drag and drop a PSD file into the upload area or click to select
-3. Browse layers in the left panel
-4. Click on a layer to view its properties in the right panel
-5. Use mouse wheel to zoom, Space+drag to pan
-6. Click on canvas to select layers
+[MIT](LICENSE)

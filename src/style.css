@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-app-foreground: #ecf1ee;
+  --color-page: #f4f6f5;
+  --color-welcome-foreground: #e3e7e5;
+  --color-welcome-glow: #303533;
+  --color-welcome-mid: #252927;
+  --color-welcome-base: #1d201f;
+  --color-drop-border: #515854;
+  --color-drop-border-hover: #777f7b;
+  --color-drop-surface: rgb(39 43 41 / 80%);
+  --color-file-border: #59615d;
+  --color-file-foreground: #cbd0cd;
+  --color-file-surface: #222624;
+  --color-muted: #8f9793;
+  --color-danger: #b84840;
+  --color-viewer: #222625;
+  --color-canvas: #272b29;
+  --color-canvas-grid: #2d312f;
+  --color-loupe-border: #656d69;
+  --color-divider: #3f4542;
+  --color-text-strong: #e2e6e4;
+  --color-chrome-border: rgb(255 255 255 / 9%);
+  --color-chrome-surface: rgb(30 33 32 / 95%);
+  --color-control-border: #434a47;
+  --color-control-foreground: #c8cecb;
+  --color-control-surface: #303432;
+  --color-control-border-hover: #626b67;
+  --color-toolbar-foreground: #858c88;
+  --color-toolbar-button: #282b2a;
+  --color-control-hover: #363a38;
+  --color-control-hover-foreground: #dce0de;
+  --color-control-active-border: #737a76;
+  --color-control-active: #505552;
+  --color-control-active-key: #d3d8d5;
+  --color-toolbar-key: #7f8884;
+  --color-toolbar-divider: #424846;
+  --color-show-panel-foreground: #c7cdca;
+  --color-panel-border: rgb(255 255 255 / 8%);
+  --color-panel-surface: rgb(30 32 31 / 96%);
+  --color-panel-header: #1e201f;
+  --color-panel-action: #999f9c;
+  --color-panel-action-hover: #373b39;
+  --color-list-track: #292d2b;
+  --color-row-foreground: #cfd2d1;
+  --color-row-hover: #343434;
+  --color-disclosure: #8f9492;
+  --color-document-border: #7f8682;
+  --color-document-foreground: #aeb4b1;
+  --color-toast-border: #3e4642;
+  --color-toast-foreground: #c9d0cc;
+  --color-toast-surface: rgb(26 30 28 / 96%);
+  --color-spinner-border: #505a55;
+  --color-accent: #5de2a5;
+  --color-error-border: #714541;
+  --color-error-foreground: #f0b8b3;
+  --color-error-surface: rgb(58 38 38 / 97%);
+  --color-error-action: #c58a85;
+  --color-inspector: #272a29;
+  --color-inspector-border: #1c1f1e;
+  --color-inspector-title: #d8dcda;
+  --color-inspector-subtitle: #858c89;
+  --color-inspector-type: #737a77;
+  --color-section-divider: rgb(255 255 255 / 7%);
+  --color-heading: #bfc5c2;
+  --color-code-foreground: #c0c8c4;
+  --color-code-surface: #181b1a;
+  --color-empty-foreground: #707875;
+  --color-warning: #d2a653;
+  --color-warning-foreground: #bcb39d;
+  --color-warning-surface: rgb(210 166 83 / 8%);
+  --color-checker-dark: #242725;
+  --color-preview-overlay: rgb(255 255 255 / 16%);
+  --color-input-foreground: #dbe0dd;
+  --color-term: #7d8581;
+  --color-icon: #919894;
+  --color-count: #747c78;
+  --color-font-style: #929995;
+  --color-tag-border: #414744;
+  --color-tag-foreground: #abb2ae;
+  --color-swatch-border: rgb(255 255 255 / 18%);
+  --color-scrollbar-thumb: #525856;
+  --color-row-disabled: #777777;
+  --color-visibility: #aeb3b1;
+  --color-visibility-hidden: #6d7270;
+  --color-layer-icon: #929794;
+  --color-layer-icon-selected: #d5d9d7;
+  --color-badge-border: #585d5b;
+  --color-badge-foreground: #aeb2b0;
+  --color-row-divider: rgb(255 255 255 / 2.5%);
+  --color-shadow-drop: rgb(0 0 0 / 24%);
+  --color-shadow-toolbar: rgb(0 0 0 / 38%);
+  --color-shadow-panel: rgb(0 0 0 / 50%);
+  --color-shadow-toast: rgb(0 0 0 / 32%);
+  --color-shadow-highlight: rgb(255 255 255 / 10%);
+  --color-canvas-outline: rgb(255 255 255 / 40%);
+  --color-measure-mask: rgb(18 22 21 / 42%);
+  --color-measure-fill: rgb(255 255 255 / 16%);
+  --color-measure-guide: rgb(255 255 255 / 88%);
+  --color-measure-label: #ffffff;
+  --color-measure-label-shadow: rgb(0 0 0 / 80%);
+  --color-measure-distance: #ff6b6b;
+  --color-loupe-selection: #ffffff;
+}
+
+@layer base {
+  :root {
+    color: var(--color-app-foreground);
+    background: var(--color-page);
+    font-family: var(--font-sans);
+    font-synthesis: none;
+  }
+
+  html,
+  body,
+  #app {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+}
+
+@utility welcome-backdrop {
+  background: radial-gradient(
+    circle at 50% 42%,
+    var(--color-welcome-glow) 0,
+    var(--color-welcome-mid) 48%,
+    var(--color-welcome-base) 100%
+  );
+}
+
+@utility canvas-checker {
+  background-color: var(--color-canvas);
+  background-image:
+    linear-gradient(45deg, var(--color-canvas-grid) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--color-canvas-grid) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--color-canvas-grid) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--color-canvas-grid) 75%);
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  background-size: 20px 20px;
+}
+
+@utility checkerboard {
+  background: repeating-conic-gradient(
+      var(--color-control-surface) 0 25%,
+      var(--color-checker-dark) 0 50%
+    ) 50% / 12px 12px;
+}
+
+@utility preview-checker {
+  position: relative;
+  background: repeating-conic-gradient(
+      var(--color-control-surface) 0 25%,
+      var(--color-checker-dark) 0 50%
+    ) 0 0 / 12px 12px;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--color-preview-overlay);
+    content: "";
+    opacity: 0;
+    transition: opacity 140ms ease;
+  }
+
+  &:hover {
+    animation: checker-shift 800ms linear infinite;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+@utility thin-scrollbar {
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-inspector);
+  scrollbar-width: thin;
+}
+
+@keyframes spin-fast {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes checker-shift {
+  to {
+    background-position: 12px 12px;
+  }
+}
